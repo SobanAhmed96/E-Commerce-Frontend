@@ -5,7 +5,12 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server:{
     proxy: {
-      "/api": "https://e-commerce-backend-production-7804.up.railway.app" || " http://localhost:4000"
+      "/api": {
+        target: import.meta.env.VITE_API_URL,
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      },
     }
   },
   plugins: [react(),tailwindcss(),],
