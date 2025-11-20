@@ -13,7 +13,7 @@ const GetAllProduct = () => {
     const getData = async () => {
       try {
         setLoding(true);
-        const res = await axios.get(`/api/v1/getAllProduct?pagenum=${pagenum}&limit=6`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/getAllProduct?pagenum=${pagenum}&limit=6`);
         const dataFilter = res.data?.data;
         setCardData(dataFilter);
         setTotalpage(res.data?.totalPages || 1);

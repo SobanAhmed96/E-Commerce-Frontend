@@ -18,7 +18,7 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const searchData = async () => {
     try {
-      const res = await axios.get("/api/v1/getAllProduct");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/getAllProduct`);
       console.log(res.data.data);
       const filterd = res.data.data.filter((iteam) =>
         iteam.productName.toLowerCase().includes(search.toLowerCase())
@@ -34,7 +34,7 @@ const Navbar = () => {
     const getUser = async () => {
       if (token) {
         try {
-          const res = await axios.get("/api/v1/isLogin");
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/isLogin`);
           console.log(res.data);
           setprofile(res.data.data);
           console.log(profile);

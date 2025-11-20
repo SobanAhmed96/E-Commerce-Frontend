@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server:{
     proxy: {
-      "/api": "https://e-commerce-web-u37o.vercel.app" || " http://localhost:4000"
+      "/api": "https://e-commerce-backend-production-7804.up.railway.app" || " http://localhost:4000"
     }
   },
   plugins: [react(),tailwindcss(),],

@@ -17,7 +17,7 @@ const Product_details = () => {
   const navigate = useNavigate();
   const check = async () => {
     try {
-      const res = await axios.get("/api/v1/isLogin");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/isLogin`);
       setIsLogin(res.data.success === true);
     } catch (error) {
       setIsLogin(false);
@@ -26,7 +26,7 @@ const Product_details = () => {
   };
   const getFav = async () => {
     try {
-      const res = await axios.get(`/api/v1/getFavourite/${id}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/getFavourite/${id}`);
       console.log(res.data);
       if (res.data.success === true) {
         setfavStatus(true);
@@ -41,7 +41,7 @@ const Product_details = () => {
   };
   const getProductData = async () => {
     try {
-      const res = await axios.get(`/api/v1/getProduct/${id}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/getProduct/${id}`);
       setProductData(res.data.data);
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -68,7 +68,7 @@ const Product_details = () => {
     } else {
       try {
         setloding(true);
-        const res = await axios.post("/api/v1/addToCart", { productId: id });
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/addToCart`, { productId: id });
         console.log(res.data);
         toast.success("Successfully Add To Cart!");
       } catch (error) {
@@ -90,13 +90,13 @@ const Product_details = () => {
     try {
       if (!favStatus) {
         setfavStatus(true);
-        await axios.post(`/api/v1/addFavourite`, { productId: id });
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/addFavourite`, { productId: id });
         toast.success("Added Favourite");
         getFav();
       } else{
         setfavStatus(false);
         if(favProductId){
-          await axios.delete(`/api/v1/deleteFavourite/${favProductId}`);
+          await axios.delete(`${import.meta.env.VITE_API_URL}/api/v1/deleteFavourite/${favProductId}`);
           setfavProductId(null);
           toast.success("Unfavourite");
         }
